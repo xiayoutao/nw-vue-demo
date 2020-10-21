@@ -1,11 +1,16 @@
 {
   "name": "nwjs-vue-demo",
+  "description": "nwjs demo",
   "version": "0.1.0",
   "private": true,
+  "main": "localhost:5100/",
+  "node-remote": "http://localhost:5100/",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "nw:serve": "run --x86 --mirror https://npm.taobao.org/mirrors/nwjs/ .",
+    "nw:build": "build --tasks win-x86,win-x64,linux-x86,linux-x64,mac-x64 --mirror https://npm.taobao.org/mirrors/nwjs/ ."
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -18,21 +23,18 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "nw-vue-devtools": "^1.3.1",
+    "nwjs-builder-phoenix": "^1.15.0",
     "vue-template-compiler": "^2.6.11"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
+  "chromium-args": "--load-extension='./node_modules/nw-vue-devtools/extension'",
+  "single-instance": true,
+  "window": {
+    "width": 830,
+    "height": 580
+  },
+  "build": {
+    "nwVersion": "0.49.0"
   },
   "browserslist": [
     "> 1%",
